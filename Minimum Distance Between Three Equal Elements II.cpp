@@ -2,7 +2,7 @@ class Solution {
 public:
     int minimumDistance(vector<int>& nums) {
 
-        //Brust Approach
+        //Brut Approach
 
         // int n = nums.size();
         // if(n < 3){
@@ -23,23 +23,22 @@ public:
 
         //Optimal code
         unordered_map<int, vector<int>> m;
+        int result = INT_MAX;
 
-        for(int i = 0; i < nums.size();i++){
-            m[nums[i]].push_back(i);
-        }
+        for(int k = 0; k < nums.size();k++){
+            m[nums[k]].push_back(k);
+             
+            if(m[nums[k]].size() >= 3){
+                // i, j, k
+                // 2(k-i)
+                vector<int> &vec = m[nums[k]];
+                int siz = vec.size();
 
-        int ans = INT_MAX;
-        for(auto &it : m){
-            vector<int> &v = it.second;
-
-            if(v.size() >= 3){
-                for(int i = 0; i + 2 < v.size();i++){
-                    int dist = 2 * (v[i+2] - v[i]);
-                    ans = min(ans, dist);
-                }
+                int i = vec[siz - 3];
+                result = min(result, 2*(k-i));
             }
         }
-        return (ans == INT_MAX) ? -1 : ans; 
-        
+        return result == INT_MAX ? -1 : result;
+
     }
 };
