@@ -2,7 +2,8 @@ class Solution {
 public:
 
     bool isalpha(char ch){
-        if(ch >= '0' && ch <= '9' || tolower(ch) >= 'a' && tolower(ch) <= 'z'){
+        // if(ch >= '0' && ch <= '9' || tolower(ch) >= 'a' && tolower(ch) <= 'z'){
+        if(isalnum(ch)){
             return true;
         }
         return false;
